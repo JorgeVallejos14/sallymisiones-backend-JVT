@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block titulo %}{{ mision.nombre }}{% endblock %}
+
+{% block contenido %}
+    <h2>{{ mision.nombre }}</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item">Ubicación: {{ mision.ubicacion }}</li>
+        <li class="list-group-item">Nivel de dificultad: {{ mision.nivel_dificultad|floatformat:1 }}</li>
+        <li class="list-group-item">Estado: {{ mision.estado }}</li>
+        <li class="list-group-item">Responsable: {{ mision.responsable }}</li>
+    </ul>
+    <p>{{ mision.descripcion }}</p>
+
+    {% if mision.nivel_dificultad > 7 %}
+        <div class="alert alert-danger">⚠️ Misión de alto riesgo</div>
+    {% endif %}
+
+    <a href="{% url 'misiones:inicio' %}" class="btn btn-secondary">Volver a la portada</a>
+{% endblock %}

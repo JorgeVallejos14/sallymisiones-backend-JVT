@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Inicio - Bitácora de la Resistencia{% endblock %}
+
+{% block contenido %}
+    <p>Total de misiones: {{ misiones|length }}</p>
+
+    <div class="row">
+    {% for m in misiones %}
+        <div class="col-md-4 mb-4">
+            <div class="card mision-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ m.nombre|upper }}</h5>
+                    <p class="card-text">Estado: {{ m.estado }}</p>
+                    <p class="card-text">{{ m.descripcion|truncatewords:8 }}</p>
+                    <a href="{% url 'misiones:detalle' m.id %}" class="btn btn-primary">Ver detalle</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No hay misiones registradas.</p>
+    {% endfor %}
+    </div>
+{% endblock %}
